@@ -17,3 +17,17 @@ function fibs(n) {
 
     return sequence;
 }
+
+function fibsRec(n) {
+    if (n === 1) return [0];
+    const term = getFibTerm(n);
+    return fibsRec(n - 1).concat([term]);
+}
+
+function getFibTerm(n) {
+    // Recursive definition of fibonacci sequence:
+    // https://www.youtube.com/watch?v=zg-ddPbzcKM
+    if (n === 1) return 0; // First fibonacci term is 0 by definition
+    if (n === 2) return 1; // Second fibonacci term is 1 by definition
+    else return getFibTerm(n - 1) + getFibTerm(n - 2);
+}
