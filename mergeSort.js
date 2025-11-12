@@ -26,9 +26,13 @@ function mergeHalves(left, right) {
         const rightItem = right[rightIdx];
 
         if (leftIdx >= left.length) {
+            // If no more items to compare in left array,
+            // sort right array items in
             sortedArr.push(rightItem);
             rightIdx++;
         } else if (rightIdx >= right.length) {
+            // If no more items to compare in right array,
+            // sort left array items in
             sortedArr.push(leftItem);
             leftIdx++;
         } else if (leftItem < rightItem) {
@@ -38,6 +42,9 @@ function mergeHalves(left, right) {
             sortedArr.push(rightItem);
             rightIdx++;
         } else {
+            // Items which are not greater/less than each other
+            // must be equal, so push either side in and increment
+            // the array index for that side
             sortedArr.push(leftItem);
             leftIdx++;
         }
