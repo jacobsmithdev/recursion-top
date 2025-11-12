@@ -16,20 +16,30 @@ function mergeSort(arr) {
 
 function mergeHalves(left, right) {
     const sortedArr = [];
+    const numItems = left.length + right.length;
 
-    while (right.length > 0 || left.length > 0) {
-        if (right[0] === undefined) {
-            const leftItem = left.shift();
-            sortedArr.push(leftItem);
-        } else if (left[0] === undefined) {
-            const rightItem = right.shift();
+    let leftIdx = 0;
+    let rightIdx = 0;
+
+    for (let i = 0; i < numItems; i++) {
+        const leftItem = left[leftIdx];
+        const rightItem = right[rightIdx];
+
+        if (leftIdx >= left.length) {
             sortedArr.push(rightItem);
-        } else if (left[0] < right[0]) {
-            const leftItem = left.shift();
+            rightIdx++;
+        } else if (rightIdx >= right.length) {
             sortedArr.push(leftItem);
-        } else if (right[0] <= left[0]) {
-            const rightItem = right.shift();
+            leftIdx++;
+        } else if (leftItem < rightItem) {
+            sortedArr.push(leftItem);
+            leftIdx++;
+        } else if (rightItem < leftItem) {
             sortedArr.push(rightItem);
+            rightIdx++;
+        } else {
+            sortedArr.push(leftItem);
+            leftIdx++;
         }
     }
 
